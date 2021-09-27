@@ -1,4 +1,4 @@
-import { request } from "../../API/request";
+import { request } from "./request";
 import { createAction } from "./index";
 import { actionTypes } from "./types";
 
@@ -22,11 +22,13 @@ export const signIn = (loginInfo, callback) => {
 
 export const getMe = (dispatch) => {
   request({
-    url: "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+    url: "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinNguoiDung",
     method: "POST",
   })
     .then((res) => {
       dispatch(createAction(actionTypes.SET_ME, res.data));
     })
-    .catch();
+    .catch((err) => {
+      console.log(err);
+    });
 };
