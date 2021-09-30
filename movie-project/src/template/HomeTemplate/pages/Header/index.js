@@ -8,25 +8,35 @@ import Menu from "@material-ui/core/Menu";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, withStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import styles from "./style";
 
 class Header extends Component {
   render() {
-    const { me } = this.props;
+    const { me, classes } = this.props;
+
     return (
       <div>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+        <Box>
+          <AppBar position="static" className={classes.bgGrey}>
             <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                style={{ flexGrow: 1, alignSelf: "center" }}
+              >
                 <NavLink
-                  activeStyle={{ color: "#f00000" }}
+                  activeStyle={{ color: "yellow" }}
                   to="/"
                   exact
-                  style={{ marginRight: 20, color: "#ffffff" }}
+                  style={{
+                    marginRight: 20,
+                    color: "#ffffff",
+                    textDecoration: "none",
+                  }}
                 >
-                  Movie
+                  <img src="./assets/logo.png" alt style={{ width: "200px" }} />
                 </NavLink>
               </Typography>
               {me ? (
@@ -76,4 +86,4 @@ const mapStateToProps = (state) => ({
   me: state.me,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withStyles(styles)(Header));

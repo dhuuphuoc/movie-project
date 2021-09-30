@@ -8,19 +8,22 @@ import Signin from "./pages/Signin";
 import React from "react";
 import { getMe } from "./API/auth";
 import { connect } from "react-redux";
+import theme from "./themes";
+import { ThemeProvider } from "@material-ui/core";
 
 export const history = createBrowserHistory();
 class App extends React.Component {
   render() {
     return (
       <Router history={history}>
-        <Switch>
-          <HomeTemplate path="/" exact Component={Home} />
-
-          <UserTemplate path="/register" Component={Register} />
-          <UserTemplate path="/signin" Component={Signin} />
-          <UserTemplate />
-        </Switch>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <HomeTemplate path="/" exact Component={Home} />
+            <UserTemplate path="/register" Component={Register} />
+            <UserTemplate path="/signin" Component={Signin} />
+            <UserTemplate />
+          </Switch>
+        </ThemeProvider>
       </Router>
     );
   }
