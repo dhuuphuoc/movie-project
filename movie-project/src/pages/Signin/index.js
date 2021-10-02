@@ -67,7 +67,7 @@ class SignIn extends Component {
                   />
                 </div>
 
-                <div>
+                <div style={{ textAlign: "center" }}>
                   <Button type="submit" variant="contained" color="primary">
                     Đăng Nhập
                   </Button>
