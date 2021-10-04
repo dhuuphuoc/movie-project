@@ -1,0 +1,12 @@
+.footer {
+  background-image: url("./assets/background-footer.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 3rem 0;
+}
+
+
+.footer .footer-item ul li i {
+  padding-right: 10px;
+}
