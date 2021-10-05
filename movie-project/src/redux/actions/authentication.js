@@ -10,8 +10,8 @@ export const signIn = (loginInfo, callback) => {
       body: loginInfo,
     })
       .then((res) => {
-        dispatch(createAction(actionTypes.SET_ME, res.data));
-        localStorage.setItem("token", res.data.accessToken);
+        dispatch(createAction(actionTypes.SET_ME, res.data.content));
+        localStorage.setItem("token", res.data.content.accessToken);
         callback();
       })
       .catch((err) => {

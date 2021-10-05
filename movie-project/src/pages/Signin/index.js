@@ -16,12 +16,14 @@ class SignIn extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      loginInfo: {
-        ...this.state.loginInfo,
-        [e.target.name]: e.target.value,
+    this.setState(
+      {
+        loginInfo: {
+          ...this.state.loginInfo,
+          [e.target.name]: e.target.value,
+        },
       },
-    });
+    );
   };
 
   handleSubmit = (e) => {
@@ -38,15 +40,15 @@ class SignIn extends Component {
     return (
       <div className="row" style={{ margin: "0" }}>
         <div className="col-6" style={{ padding: "0" }}>
-          <img src="./assets/signinBg.jpg" alt style={{ width: "100%" }} />
+          <img src="./assets/signinBg.jpg" alt="" style={{ width: "100%" }} />
         </div>
         <div className="col-6" style={{ padding: "0" }}>
           <div className={classes.padding}>
             <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
-              ĐĂNG KÝ
+              ĐĂNG NHẬP
             </h1>
             <Container maxWidth="sm">
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <div style={{ marginBottom: 30 }}>
                   <TextField
                     name="taiKhoan"

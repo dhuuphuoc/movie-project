@@ -4,15 +4,25 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import Menu from "@material-ui/core/Menu";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Button, withStyles } from "@material-ui/core";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Link } from "react-router-dom";
 import styles from "./style";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  handleLogout() {
+    localStorage.removeItem("token");
+  }
+
   render() {
     const { me, classes } = this.props;
 
@@ -41,29 +51,31 @@ class Header extends Component {
               </Typography>
               {me ? (
                 <>
-                  <div>
-                    <IconButton
-                      size="large"
-                      aria-label="account of current user"
-                      aria-controls="menu-appbar"
-                      aria-haspopup="true"
-                      color="inherit"
-                    >
-                      <AccountCircle />
-                    </IconButton>
-                    <Menu
-                      id="menu-appbar"
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                    ></Menu>
-                  </div>
+                  <PopupState variant="popover" popupId="demo-popup-menu">
+                    {(popupState) => (
+                      <React.Fragment>
+                        <IconButton
+                          size="large"
+                          aria-label="account of current user"
+                          aria-controls="menu-appbar"
+                          aria-haspopup="true"
+                          color="inherit"
+                          {...bindTrigger(popupState)}
+                        >
+                          <AccountCircle />
+                          {me.hoTen}
+                        </IconButton>
+                        <Menu {...bindMenu(popupState)}>
+                          <MenuItem onClick={popupState.close}>
+                            My account
+                          </MenuItem>
+                          <MenuItem onClick={this.handleLogout}>
+                            Logout
+                          </MenuItem>
+                        </Menu>
+                      </React.Fragment>
+                    )}
+                  </PopupState>
                 </>
               ) : (
                 <>

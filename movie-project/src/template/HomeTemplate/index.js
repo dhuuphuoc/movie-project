@@ -1,15 +1,25 @@
-import { Route } from "react-router";
+import { Redirect, Route } from "react-router";
 import { Fragment } from "react";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 
 export const HomeTemplate = (props) => {
-  const { Component, ...restRoute } = props;
+  const { Component, redirectPath, ...restRoute } = props;
 
   return (
     <Route
       {...restRoute}
       render={(propsRoute) => {
+        // if (!localStorage.getItem("token")) {
+        //   return (
+        //     <Fragment>
+        //       <Header />
+        //       <Component {...propsRoute} />
+        //       <Footer />
+        //     </Fragment>
+        //   );
+        // }
+        // return <Redirect to={redirectPath} />;
         return (
           <Fragment>
             <Header />
