@@ -13,14 +13,21 @@ import MenuItem from "@material-ui/core/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Link } from "react-router-dom";
 import styles from "./style";
+import { Navigation } from "@material-ui/icons";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.handleLogout = this.handleLogout.bind(this);
+    this.goToLogin = this.goToLogin.bind(this);
   }
   handleLogout() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("t");
+    this.goToLogin();
+  }
+
+  goToLogin(e) {
+    this.props.history.push("/signin");
   }
 
   render() {

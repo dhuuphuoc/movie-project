@@ -11,7 +11,7 @@ export const signIn = (loginInfo, callback) => {
     })
       .then((res) => {
         dispatch(createAction(actionTypes.SET_ME, res.data.content));
-        localStorage.setItem("token", res.data.content.accessToken);
+        localStorage.setItem("t", res.data.content.accessToken);
         callback();
       })
       .catch((err) => {
@@ -26,7 +26,7 @@ export const getMe = (dispatch) => {
     method: "POST",
   })
     .then((res) => {
-      dispatch(createAction(actionTypes.SET_ME, res.data));
+      dispatch(createAction(actionTypes.SET_ME, res.data.content));
     })
     .catch();
 };

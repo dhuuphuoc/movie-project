@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Container, TextField, withStyles } from "@material-ui/core";
 import styles from "./style";
-import axios from "axios";
+import { request } from "../../API/request";
 
 class Register extends Component {
   constructor(props) {
@@ -34,30 +34,26 @@ class Register extends Component {
   };
 
   registerUser = () => {
-    axios({
+    request({
       url: "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
       method: "POST",
-      data: this.state.user,
+      body: this.state.user,
     })
       .then((res) => {
-        this.setState({
-          open: true,
-        });
-        this.handleSuccess();
+        this.handleSuccess(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
-  handleSuccess = () => {
-    alert("Register success");
+  handleSuccess = (message) => {
+    alert(message);
     this.props.history.push("/signIn");
   };
 
   render() {
     const { classes } = this.props;
-
     return (
       <div className="row" style={{ margin: "0" }}>
         <div className="col-6" style={{ padding: "0" }}>

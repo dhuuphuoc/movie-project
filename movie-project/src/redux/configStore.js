@@ -1,4 +1,5 @@
 import me from "./reducers/me";
+import movie from "./reducers/movie";
 
 const {
   combineReducers,
@@ -9,7 +10,8 @@ const {
 const { default: thunk } = require("redux-thunk");
 
 const rootReducer = combineReducers({
-    me
+  me,
+  movie,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
