@@ -21,7 +21,6 @@ class Carousel extends Component {
       method: "GET",
     })
       .then((res) => {
-        console.log("res", res.data);
         this.setState({
           movieBanner: res.data.content,
         });

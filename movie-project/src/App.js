@@ -3,6 +3,7 @@ import { createBrowserHistory } from "history";
 import { HomeTemplate } from "./template/HomeTemplate";
 import Home from "./pages/Home";
 import { UserTemplate } from "./template/UserTemplate";
+import Detail from "./pages/Detail";
 import Register from "./pages/Register";
 import Signin from "./pages/Signin";
 import React from "react";
@@ -21,6 +22,7 @@ class App extends React.Component {
             <HomeTemplate path="/" exact Component={Home} />
             <UserTemplate path="/register" Component={Register} />
             <UserTemplate path="/signin" Component={Signin} />
+            <HomeTemplate path="/detail/:id" Component={Detail} />
             <UserTemplate />
           </Switch>
         </ThemeProvider>
