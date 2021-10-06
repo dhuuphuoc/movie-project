@@ -1,0 +1,1 @@
+export const INFO_ACCOUNT = "INFO_ACCOUNT"

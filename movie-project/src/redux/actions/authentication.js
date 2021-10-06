@@ -1,4 +1,5 @@
 import { request } from "../../API/request";
+import { INFO_ACCOUNT } from "../type/QuanLyTaiKhoanType";
 import { createAction } from "./index";
 import { actionTypes } from "./types";
 
@@ -30,3 +31,22 @@ export const getMe = (dispatch) => {
     })
     .catch();
 };
+
+
+export const getAccoutInfo = dispatch =>{
+  request({
+    url:"https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+    method: "POST",
+  })
+  .then((res)=>{
+    if(res.data.statusCode === 200){
+      dispatch({
+        type: INFO_ACCOUNT,
+        payload: res.data.content
+      })
+    }
+  })
+  .catch((errors)=>{
+    console.log(errors)
+  })
+}
