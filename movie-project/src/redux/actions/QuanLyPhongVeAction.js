@@ -31,11 +31,12 @@ export const bookingTitketAction = (thongTinDatVe = new ThongTinDatVe) => {
     return  dispatch => {
         request( {
             url: "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-            method: "POST"
+            method: "POST",
+            body: thongTinDatVe
         })
-            .then(async (res) => {
-               await dispatch(setOfficeList(thongTinDatVe.maLichChieu))
-                await dispatch({
+            .then( (res) => {
+               dispatch(setOfficeList(thongTinDatVe.maLichChieu))
+                dispatch({
                     type: BOOKING_DONE
                 })
             })

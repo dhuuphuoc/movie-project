@@ -23,14 +23,13 @@ function Checkout(props) {
 
     const { detailOfficeMovie, danhSachGheDangDat } = useSelector(state => state.QuanLyPhongVeReducer)
     const { thongTinPhim, danhSachGhe } = detailOfficeMovie
-    console.log(detailOfficeMovie)
+    console.log("🚀 ~ file: index.js ~ line 28 ~ Checkout ~ console.log(danhSachGhe)", console.log(danhSachGhe))
     console.log("🚀 ~ file: index.js ~ line 27 ~ Checkout ~ console.log(detailOfficeMovie)", console.log(detailOfficeMovie))
     const handleBooking = () => {
-        const thongTinDatVe = new ThongTinDatVe
-        thongTinDatVe.maLichChieu = props.match.params.id;
-        thongTinDatVe.danhSachVe = danhSachGheDangDat;
-        console.log("🚀 ~ file: index.js ~ line 32 ~ handleBooking ~ console.log(danhSachGheDangDat)", console.log(danhSachGheDangDat))
-        dispatch(bookingTitketAction(thongTinDatVe))
+       const thongTinDatVe = new ThongTinDatVe
+       thongTinDatVe.maLichChieu = props.match.params.id
+       thongTinDatVe.danhSachVe = danhSachGheDangDat;
+       dispatch(bookingTitketAction(thongTinDatVe))
     }
 
    useEffect(()=>{
@@ -171,7 +170,8 @@ export default function CheckoutTab(props){
     return <Container style={{marginTop:70}}>
         <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
             dispatch({
-                type:SET_TAB
+                type:SET_TAB,
+                number: key
             })
         }}>
             <TabPane tab="01. Chọn ghế & Thanh toán" key="1">
@@ -190,22 +190,22 @@ function KetQuaDatVe(props){
     const classes = useStyle()
     const { userInfo } = useSelector(state => state.QuanLyNguoiDungReducer)
     useEffect(()=>{
-        dispatch(getAccoutInfo())
+        dispatch(getAccoutInfo)
     },[])
     const renderTicketItem = function () {
         return userInfo.thongTinDatVe?.map((ticket, index) => {
             return (
                 <Container key={index}>
-                    <Card>
-                        <CardContent>
-                            <Typography>Tên phim: {ticket.tenPhim}</Typography>
-                            <Typography>Ngay dat: {ticket.ngayDat}</Typography>
+                    <Card className="mb-5">
+                        <CardContent >
+                            <Typography><span style={{fontWeight:700}}>Tên phim:</span> {ticket.tenPhim}</Typography>
+                            <Typography><span style={{ fontWeight: 700 }}>Ngày đặt:</span> {ticket.ngayDat}</Typography>
                             <div style={{display:"flex"}}>
-                                <h6 className={classes.content_overview_title}> Ten ghe:</h6>
+                                <span style={{ fontWeight: 700, fontSize: 17 }}>Tên ghế:</span>
                                 {ticket.danhSachGhe.map((sit, index) => {
                                     return (
                                         <>
-                                                <span className="ml-2"> {sit.tenGhe}</span>
+                                                <span className="ms-2"> {sit.tenGhe}</span>
                                         </>
                                     )
                                 })
