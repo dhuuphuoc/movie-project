@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import Carousel from "../../template/HomeTemplate/pages/Carousel";
-import { getMovieBanner } from "../../redux/actions/movie";
+import ListMovie from "../../template/HomeTemplate/pages/ListMovie";
 import { connect } from "react-redux";
 
 class Home extends Component {
   render() {
     return (
-      <div>
+      <>
         <Carousel />
-      </div>
+        <ListMovie />
+      </>
     );
-  }
-
-  componentDidMount() {
-    this.props.dispatch(getMovieBanner);
   }
 }
 
