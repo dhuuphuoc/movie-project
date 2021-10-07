@@ -9,9 +9,10 @@ import _ from 'lodash'
 import { Tabs } from "antd";
 import { getAccoutInfo } from '../../redux/actions/authentication'
 import { bookingTitketAction, setOfficeList } from '../../redux/actions/QuanLyPhongVeAction'
-import { SET_TAB } from '../../redux/type/QuanLyCumRapType'
+import { SET_TAB, SET_TAB_ACTIVE } from '../../redux/type/QuanLyCumRapType'
 import { ThongTinDatVe } from '../../_core/modules/ThongTinDatVe'
 import { BOOKING } from '../../redux/type/QuanLyPhongVeType'
+import moment from 'moment'
 
 const { TabPane } = Tabs;
 
@@ -170,7 +171,7 @@ export default function CheckoutTab(props){
     return <Container style={{marginTop:70}}>
         <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
             dispatch({
-                type:SET_TAB,
+                type:SET_TAB_ACTIVE,
                 number: key
             })
         }}>
@@ -194,35 +195,34 @@ function KetQuaDatVe(props){
     },[])
     const renderTicketItem = function () {
         return userInfo.thongTinDatVe?.map((ticket, index) => {
+            const seats = _.first(ticket.danhSachGhe)
             return (
-                <Container key={index}>
-                    <Card className="mb-5">
-                        <CardContent >
-                            <Typography><span style={{fontWeight:700}}>Tên phim:</span> {ticket.tenPhim}</Typography>
-                            <Typography><span style={{ fontWeight: 700 }}>Ngày đặt:</span> {ticket.ngayDat}</Typography>
-                            <div style={{display:"flex"}}>
-                                <span style={{ fontWeight: 700, fontSize: 17 }}>Tên ghế:</span>
-                                {ticket.danhSachGhe.map((sit, index) => {
-                                    return (
-                                        <>
-                                                <span className="ms-2"> {sit.tenGhe}</span>
-                                        </>
-                                    )
-                                })
-                                }
-                            </div>
-                           
+                <Grid item xs={12} md={4} key={index}>
+                    <Card style={{ height: "400px" }} className="mb-5" >
+                        <div style={{ textAlign: "center" }}>
+                            <img style={{ width: 100, height: 100, borderRadius: "50%" }} src={ticket.hinhAnh} />
+                        </div>
+                        <CardContent style={{ height: "auto" }}>
+                            <Typography className="mb-4" align="center" component="h4" variant="h6  " style={{ fontWeight: 600 }}>{ticket.tenPhim}</Typography>
+                            <p style={{ fontSize: 15 }}><span style={{ fontWeight: 600 }}>Giờ chiếu:</span> {moment(ticket.ngayDat).format('hh:mm A')} - <span style={{ fontWeight: 600 }}>Ngày chiếu: </span> {moment(ticket.ngayChieu).format('DD-MM-YYYY')} .</p>
+                            <p style={{ fontSize: 15 }}><span style={{ fontWeight: 600 }}>Địa điểm: </span> {seats.tenHeThongRap}</p>
+                            <p style={{ fontSize: 15 }}><span style={{ fontWeight: 600 }}>Tên rạp: </span>{seats.tenCumRap} - <span style={{ fontWeight: 600 }}>Ghế: </span> {ticket.danhSachGhe.map((ghe, index) => { return <span key={index} style={{ color: "green", fontWeight: 700, fontSize: 18, wordBreak: "break-word", marginRight: 3 }}>{`[${ghe.tenGhe}]`}</span> })}</p>
                         </CardContent>
+
                     </Card>
-                    
-                </Container>
+                </Grid>
          
             )
           
         })
     }
     return <Container>
-        <Typography className="mb-3 mt-3" align="center" variant="h4"> Kết quả đặt vé</Typography>
-        {renderTicketItem()}
+        <Typography className=" mt-5" align="center" variant="h4" style={{ color: "#FF8C00" }}> Lịch sử đặt vé khách hàng</Typography>
+        <Typography className=" mt-2" align="center" variant="body1">Hãy xem thông tin địa chỉ và thời gian để xem phim vui vẻ bạn nhé!</Typography>
+        <Container style={{ marginTop: 90 }}>
+        <Grid container spacing={4}>
+            {renderTicketItem()}
+        </Grid> 
+        </Container>
     </Container>
 }

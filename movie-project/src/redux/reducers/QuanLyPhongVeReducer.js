@@ -1,5 +1,5 @@
 import { ThongTinLichChieu } from "../../_core/modules/ThongTinPhongVe";
-import { SET_TAB } from "../type/QuanLyCumRapType";
+import { SET_TAB, SET_TAB_ACTIVE } from "../type/QuanLyCumRapType";
 import { LIST_OFFICE, BOOKING, BOOKING_DONE} from "../type/QuanLyPhongVeType";
 
 
@@ -31,8 +31,11 @@ const QuanLyPhongVeReducer = (state = stateDefault, action)=>{
             return {...state}
         }
         case SET_TAB: {
-            state.tabActive = action.payload
+            state.tabActive = "2"
             return { ...state }
+        }
+        case SET_TAB_ACTIVE:{
+            state.tabActive = action.number
         }
         default:
             return {...state}

@@ -1,7 +1,9 @@
 import { SET_LIST_MOVIE } from "../type/QuanLyCumRapType"
+import { GET_MOVIE_INFO_LIST } from "../type/QuanLyPhongVeType"
 
 const stateDefault ={
-    filmDetail:{}
+    filmDetail:{},
+    heThongRapChieu:[],
 }
 
 const QuanLyCumRapReducer = (state = stateDefault, action)=>{
@@ -9,6 +11,10 @@ const QuanLyCumRapReducer = (state = stateDefault, action)=>{
         case SET_LIST_MOVIE:{
             state.filmDetail = action.payload
             return { ...state }
+        }
+        case GET_MOVIE_INFO_LIST:{
+            state.heThongRapChieu = action.payload
+            return {...state}
         }
         default: 
         return {...state}
