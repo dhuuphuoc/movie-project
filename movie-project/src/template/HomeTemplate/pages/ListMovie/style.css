@@ -1,0 +1,10 @@
+.MuiCard-root {
+  transition: all 0.1s !important;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.MuiCard-root:hover {
+  opacity: 0.8;
+  width: 100%;
+}

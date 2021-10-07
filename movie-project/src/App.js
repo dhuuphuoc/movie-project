@@ -17,7 +17,7 @@ export const history = createBrowserHistory();
 class App extends React.Component {
   render() {
     return (
-      <Router history={history}>z
+      <Router history={history}>
         <ThemeProvider theme={theme}>
           <Switch>
             <HomeTemplate

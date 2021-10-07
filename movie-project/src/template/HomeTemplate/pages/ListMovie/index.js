@@ -12,6 +12,7 @@ import { Tabs } from "antd";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { request } from "../../../../API/request";
+import "./style.css";
 
 const { TabPane } = Tabs;
 class ListMovie extends Component {
@@ -66,34 +67,23 @@ class ListMovie extends Component {
             <TabPane tab="Phim đang chiếu" key="1">
               <Grid container spacing={2}>
                 {this.state.phimDangChieu.map((item, index) => (
-                  <Grid key={index} item xs={6} md={4} lg={2}>
+                  <Grid
+                    key={index}
+                    item
+                    xs={6}
+                    md={4}
+                    lg={2}
+                    component={NavLink}
+                    to={`/detail/${item.maPhim}`}
+                  >
                     <Card>
                       <CardMedia
                         component="img"
-                        height="140"
+                        style={{}}
+                        height="300"
                         image={item.hinhAnh}
                         alt="movie"
                       />
-                      <CardContent style={{ height: "100px" }}>
-                        <Typography
-                          gutterBottom
-                          variant="h5"
-                          style={{ fontSize: "15px" }}
-                          component="div"
-                        >
-                          {item.tenPhim}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <NavLink
-                          to={`/detail/${item.maPhim}`}
-                          component={Button}
-                          variant="contained"
-                          size="small"
-                        >
-                          Chi tiết
-                        </NavLink>
-                      </CardActions>
                     </Card>
                   </Grid>
                 ))}
@@ -102,34 +92,23 @@ class ListMovie extends Component {
             <TabPane tab="Phim sắp chiếu" key="2">
               <Grid container spacing={2}>
                 {this.state.phimSapChieu.map((item, index) => (
-                  <Grid key={index} item xs={6} md={4} lg={2}>
+                  <Grid
+                    key={index}
+                    item
+                    xs={6}
+                    md={4}
+                    lg={2}
+                    component={NavLink}
+                    to={`/detail/${item.maPhim}`}
+                  >
                     <Card>
                       <CardMedia
                         component="img"
-                        height="140"
+                        style={{}}
+                        height="300"
                         image={item.hinhAnh}
                         alt="movie"
                       />
-                      <CardContent style={{ height: "100px" }}>
-                        <Typography
-                          gutterBottom
-                          variant="h5"
-                          style={{ fontSize: "15px" }}
-                          component="div"
-                        >
-                          {item.tenPhim}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <NavLink
-                          to={`/detail/${item.maPhim}`}
-                          component={Button}
-                          variant="contained"
-                          size="small"
-                        >
-                          Chi tiết
-                        </NavLink>
-                      </CardActions>
                     </Card>
                   </Grid>
                 ))}
