@@ -1,6 +1,8 @@
 import { request } from "../../API/request"
 import { ThongTinDatVe } from "../../_core/modules/ThongTinDatVe"
+import { SET_TAB } from "../type/QuanLyCumRapType"
 import { BOOKING_DONE, LIST_OFFICE } from "../type/QuanLyPhongVeType"
+import { displayLoadingAction, hideLoadingAction } from "./LoadingAction"
 
 
 export const setOfficeList = (maLichChieu) => {
@@ -28,19 +30,22 @@ export const setOfficeList = (maLichChieu) => {
 
 
 export const bookingTitketAction = (thongTinDatVe = new ThongTinDatVe) => {
-    return  dispatch => {
-        request( {
+    return dispatch => {
+        request({
             url: "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
             method: "POST",
             body: thongTinDatVe
         })
-            .then( (res) => {
-               dispatch(setOfficeList(thongTinDatVe.maLichChieu))
-                dispatch({
+            .then(async (res) => {
+                await dispatch(displayLoadingAction)
+                await dispatch(setOfficeList(thongTinDatVe.maLichChieu))
+                await dispatch({
                     type: BOOKING_DONE
                 })
+                await dispatch(hideLoadingAction)
+                dispatch({ type: SET_TAB })
             })
-            .catch((errors)=>{
+            .catch((errors) => {
                 console.log(errors)
             })
     }

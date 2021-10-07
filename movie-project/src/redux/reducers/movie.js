@@ -1,6 +1,10 @@
 import { actionTypes } from "../actions/types";
 
-const initialState = { banner: null, movieList: [] };
+const initialState = { 
+  banner: null, 
+  movieList: [] 
+  
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

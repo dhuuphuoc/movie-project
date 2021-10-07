@@ -4,6 +4,7 @@ import ListMovie from "../../template/HomeTemplate/pages/ListMovie";
 import { connect } from "react-redux";
 import InformationCalendar from "../../Component/InformationCalendar";
 import { Container } from "@material-ui/core";
+import News from "../News";
 
 class Home extends Component {
   render() {
@@ -13,6 +14,7 @@ class Home extends Component {
         <ListMovie />
         <Container>
           <InformationCalendar />
+          <News/>
         </Container>
       </>
     );

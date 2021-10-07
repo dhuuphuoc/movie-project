@@ -198,7 +198,7 @@ function KetQuaDatVe(props){
             const seats = _.first(ticket.danhSachGhe)
             return (
                 <Grid item xs={12} md={4} key={index}>
-                    <Card style={{ height: "400px" }} className="mb-5" >
+                    <Card style={{ height: "450px" }} className="mb-2" >
                         <div style={{ textAlign: "center" }}>
                             <img style={{ width: 100, height: 100, borderRadius: "50%" }} src={ticket.hinhAnh} />
                         </div>

@@ -3,6 +3,8 @@ import movie from "./reducers/movie";
 import QuanLyCumRapReducer from './reducers/QuanLyCumRapReducer'
 import QuanLyPhongVeReducer from './reducers/QuanLyPhongVeReducer'
 import QuanLyNguoiDungReducer from './reducers/QuanLyNguoiDungReducer'
+import { LoadingReducer} from './reducers/LoadingReducer'
+
 const {
   combineReducers,
   compose,
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
   QuanLyCumRapReducer,
   QuanLyPhongVeReducer,
   QuanLyNguoiDungReducer,
+  LoadingReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
