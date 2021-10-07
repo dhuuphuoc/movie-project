@@ -42,8 +42,8 @@ class Carousel extends Component {
     return (
       <div className="carousel" style={{ marginBottom: "2rem" }}>
         <Slider {...settings}>
-          {this.state.movieBanner.map((item) => (
-            <div>
+          {this.state.movieBanner.map((item, index) => (
+            <div key={index}>
               <img className="w-100" src={item.hinhAnh}></img>
             </div>
           ))}

@@ -13,26 +13,18 @@ import MenuItem from "@material-ui/core/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { Link } from "react-router-dom";
 import styles from "./style";
-import { Navigation } from "@material-ui/icons";
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.goToLogin = this.goToLogin.bind(this);
   }
   handleLogout() {
     localStorage.removeItem("t");
-    this.goToLogin();
-  }
-
-  goToLogin(e) {
-    this.props.history.push("/signin");
   }
 
   render() {
     const { me, classes } = this.props;
-
     return (
       <div>
         <Box>
@@ -53,7 +45,11 @@ class Header extends Component {
                     textDecoration: "none",
                   }}
                 >
-                  <img src="./assets/logo.png" alt style={{ width: "200px" }} />
+                  <img
+                    src="../../assets/logo.png"
+                    alt=""
+                    style={{ width: "200px" }}
+                  />
                 </NavLink>
               </Typography>
               {me ? (

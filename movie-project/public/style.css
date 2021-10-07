@@ -16,3 +16,7 @@
 .footer .footer-item ul li i {
   padding-right: 10px;
 }
+
+.footer .footer-item ul li a {
+  color: white !important;
+}

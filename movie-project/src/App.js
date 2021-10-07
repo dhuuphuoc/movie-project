@@ -10,7 +10,7 @@ import { getMe } from "./redux/actions/authentication";
 import { connect } from "react-redux";
 import theme from "./themes";
 import { ThemeProvider } from "@material-ui/core";
-import Detail from './pages/Detail'
+import Detail from "./pages/Detail";
 import Checkout from "./pages/Checkout";
 
 export const history = createBrowserHistory();
@@ -20,11 +20,28 @@ class App extends React.Component {
       <Router history={history}>
         <ThemeProvider theme={theme}>
           <Switch>
-            <HomeTemplate path="/" exact Component={Home} />
-            <UserTemplate path="/register" Component={Register} />
-            <UserTemplate path="/signin" Component={Signin} />
-            <HomeTemplate path="/detail/:id" Component={Detail} />
-            <HomeTemplate path="/checkout/:id" Component={Checkout}/>
+            <HomeTemplate
+              path="/"
+              exact
+              Component={Home}
+              redirectPath="/signin"
+            />
+            <UserTemplate
+              path="/register"
+              Component={Register}
+              redirectPath="/"
+            />
+            <UserTemplate path="/signin" Component={Signin} redirectPath="/" />
+            <HomeTemplate
+              path="/detail/:id"
+              Component={Detail}
+              redirectPath="/signin"
+            />
+            <HomeTemplate
+              path="/checkout/:id"
+              Component={Checkout}
+              redirectPath="/signin"
+            />
             <UserTemplate />
           </Switch>
         </ThemeProvider>

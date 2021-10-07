@@ -10,23 +10,16 @@ export const HomeTemplate = (props) => {
     <Route
       {...restRoute}
       render={(propsRoute) => {
-        // if (!localStorage.getItem("token")) {
-        //   return (
-        //     <Fragment>
-        //       <Header />
-        //       <Component {...propsRoute} />
-        //       <Footer />
-        //     </Fragment>
-        //   );
-        // }
-        // return <Redirect to={redirectPath} />;
-        return (
-          <Fragment>
-            <Header />
-            <Component {...propsRoute} />
-            <Footer />
-          </Fragment>
-        );
+        if (localStorage.getItem("t")) {
+          return (
+            <Fragment>
+              <Header />
+              <Component {...propsRoute} />
+              <Footer />
+            </Fragment>
+          );
+        }
+        return <Redirect to={redirectPath} />;
       }}
     />
   );
